@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script>
+    var subjectObject = {
+      "Front-end": {
+        HTML: ["Links", "Images", "Tables", "Lists"],
+        CSS: ["Borders", "Margins", "Backgrounds", "Float"],
+        JavaScript: ["Variables", "Operators", "Functions", "Conditions"],
+      },
+      "Back-end": {
+        PHP: ["Variables", "Strings", "Arrays"],
+        SQL: ["SELECT", "UPDATE", "DELETE"],
+      },
+    };
+    window.onload = function () {
+      var subjectSel = document.getElementById("subject");
+      var topicSel = document.getElementById("topic");
+      var chapterSel = document.getElementById("chapter");
+      for (var x in subjectObject) {
+        subjectSel.options[subjectSel.options.length] = new Option(x, x);
+      }
+      subjectSel.onchange = function () {
+        //display correct values
+        for (var y in subjectObject[this.value]) {
+          topicSel.options[topicSel.options.length] = new Option(y, y);
+        }
+      };
+      topicSel.onchange = function () {
+        //display correct values
+        var z = subjectObject[subjectSel.value][this.value];
+        for (var i = 0; i < z.length; i++) {
+          chapterSel.options[chapterSel.options.length] = new Option(
+            z[i],
+            z[i]
+          );
+        }
+      };
+    };
+  </script>
+  <body>
+    <h1>Cascading Dropdown Example</h1>
+    <form name="form1" id="form1" action="/action_page.php">
+      Subject:
+      <select name="subject" id="subject">
+        <option value="" selected="selected">Select subject</option></select
+      ><br />
+      Topics:
+      <select name="topic" id="topic">
+        <option value="" selected="selected">
+          Please select subject first
+        </option></select
+      ><br />
+      Chapters:
+      <select name="chapter" id="chapter">
+        <option>Please select subject first</option></select
+      ><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
